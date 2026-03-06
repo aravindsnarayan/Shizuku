@@ -4,10 +4,9 @@ import android.os.Build
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
-import android.widget.Toast
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
+import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.textfield.TextInputLayout
 import com.google.android.material.textfield.TextInputEditText
 import moe.shizuku.manager.BuildConfig
@@ -70,10 +69,10 @@ class AutomationViewHolder(
                             ClipboardUtils.put(context, input.text) &&
                             Build.VERSION.SDK_INT <= Build.VERSION_CODES.S_V2
                         ) {
-                            Toast.makeText(
-                                context,
+                            Snackbar.make(
+                                v,
                                 context.getString(R.string.toast_copied_to_clipboard),
-                                Toast.LENGTH_SHORT,
+                                Snackbar.LENGTH_SHORT,
                             ).show()
                         }
                     }

@@ -96,9 +96,9 @@ object AdbStarter {
                 withContext(Dispatchers.Main) {
                     val errorMsg = when (it) {
                         is AdbKeyException -> context.getString(R.string.adb_error_key_store)
-                        else -> it.message
+                        else -> it.localizedMessage ?: it.javaClass.simpleName
                     }
-                    Toast.makeText(context, context.getString(R.string.adb_error_stop_tcp) + ". ${errorMsg}", Toast.LENGTH_LONG)
+                    Toast.makeText(context, "${context.getString(R.string.adb_error_stop_tcp)}\n$errorMsg", Toast.LENGTH_LONG)
                         .show()
                 }
             }
