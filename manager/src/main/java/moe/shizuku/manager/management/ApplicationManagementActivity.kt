@@ -1,22 +1,20 @@
 package moe.shizuku.manager.management
 
 import android.os.Bundle
+import android.util.Log
 import android.util.TypedValue
 import android.view.MenuItem
-import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.recyclerview.widget.RecyclerView.AdapterDataObserver
-import moe.shizuku.manager.Helps
+import com.google.android.material.snackbar.Snackbar
 import moe.shizuku.manager.R
 import moe.shizuku.manager.app.AppBarActivity
+import moe.shizuku.manager.app.SnackbarHelper
 import moe.shizuku.manager.databinding.AppsActivityBinding
-import moe.shizuku.manager.utils.CustomTabsHelper
 import moe.shizuku.manager.utils.ShizukuStateMachine
 import rikka.lifecycle.Status
 import rikka.recyclerview.addEdgeSpacing
 import rikka.recyclerview.fixEdgeEffect
-import rikka.shizuku.Shizuku
-import java.util.*
 
 class ApplicationManagementActivity : AppBarActivity() {
 
@@ -46,10 +44,17 @@ class ApplicationManagementActivity : AppBarActivity() {
                     adapter.updateData(it.data)
                 }
                 Status.ERROR -> {
-                    finish()
                     val tr = it.error
-                    Toast.makeText(this, Objects.toString(tr, "unknown"), Toast.LENGTH_SHORT).show()
-                    tr.printStackTrace()
+                    Log.e("ApplicationManagement", "Failed to load app list", tr)
+                    SnackbarHelper.show(
+                        this,
+                        binding.root,
+                        msg = getString(R.string.app_management_load_error),
+                        duration = Snackbar.LENGTH_INDEFINITE,
+                        actionText = getString(android.R.string.ok),
+                        action = { finish() },
+                        onDismiss = { finish() }
+                    )
                 }
                 Status.LOADING -> {
 
