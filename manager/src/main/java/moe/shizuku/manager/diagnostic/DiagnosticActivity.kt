@@ -5,7 +5,6 @@ import android.os.Bundle
 import android.os.PowerManager
 import android.provider.Settings
 import android.widget.TextView
-import androidx.core.content.ContextCompat
 import moe.shizuku.manager.R
 import moe.shizuku.manager.app.AppBarActivity
 import moe.shizuku.manager.databinding.DiagnosticActivityBinding
@@ -172,8 +171,6 @@ class DiagnosticActivity : AppBarActivity() {
             false -> R.drawable.ic_server_error_24dp
             null -> R.drawable.ic_outline_info_24
         }
-        val icon = ContextCompat.getDrawable(this, iconRes)
-        icon?.setBounds(0, 0, icon.intrinsicWidth, icon.intrinsicHeight)
-        textView.setCompoundDrawables(icon, null, null, null)
+        textView.setCompoundDrawablesRelativeWithIntrinsicBounds(iconRes, 0, 0, 0)
     }
 }

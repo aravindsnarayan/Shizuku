@@ -5,6 +5,7 @@ import android.content.Intent
 import android.os.Build
 import android.service.quicksettings.Tile
 import android.service.quicksettings.TileService
+import android.util.Log
 import moe.shizuku.manager.MainActivity
 import moe.shizuku.manager.R
 import moe.shizuku.manager.utils.ShizukuStateMachine
@@ -35,7 +36,11 @@ class ShizukuTileService : TileService() {
             ShizukuStateMachine.State.RUNNING -> {
                 // Stop Shizuku
                 ShizukuStateMachine.set(ShizukuStateMachine.State.STOPPING)
-                runCatching { Shizuku.exit() }
+                val result = runCatching { Shizuku.exit() }
+                if (result.isFailure) {
+                    Log.w("ShizukuTileService", "Failed to stop Shizuku", result.exceptionOrNull())
+                    ShizukuStateMachine.update()
+                }
                 updateTile()
             }
             ShizukuStateMachine.State.STOPPED, ShizukuStateMachine.State.CRASHED -> {
@@ -69,26 +74,48 @@ class ShizukuTileService : TileService() {
         when (state) {
             ShizukuStateMachine.State.RUNNING -> {
                 tile.state = Tile.STATE_ACTIVE
-                tile.subtitle = getString(R.string.home_status_service_is_running, getString(R.string.app_name))
+                setTileSubtitle(
+                    tile,
+                    getString(R.string.home_status_service_is_running, getString(R.string.app_name))
+                )
             }
             ShizukuStateMachine.State.STARTING -> {
                 tile.state = Tile.STATE_UNAVAILABLE
-                tile.subtitle = getString(R.string.notification_service_starting)
+                setTileSubtitle(tile, getString(R.string.notification_service_starting))
             }
             ShizukuStateMachine.State.STOPPING -> {
                 tile.state = Tile.STATE_UNAVAILABLE
-                tile.subtitle = getString(R.string.stop)
+                setTileSubtitle(tile, getString(R.string.stop))
             }
             ShizukuStateMachine.State.STOPPED -> {
                 tile.state = Tile.STATE_INACTIVE
-                tile.subtitle = getString(R.string.home_status_service_not_running, getString(R.string.app_name))
+                setTileSubtitle(
+                    tile,
+                    getString(R.string.home_status_service_not_running, getString(R.string.app_name))
+                )
             }
             ShizukuStateMachine.State.CRASHED -> {
                 tile.state = Tile.STATE_INACTIVE
-                tile.subtitle = getString(R.string.home_status_service_not_running, getString(R.string.app_name))
+                setTileSubtitle(
+                    tile,
+                    getString(R.string.home_status_service_not_running, getString(R.string.app_name))
+                )
             }
         }
 
         tile.updateTile()
+    }
+
+    private fun setTileSubtitle(tile: Tile, subtitle: String) {
+        when {
+            Build.VERSION.SDK_INT >= Build.VERSION_CODES.R -> {
+                tile.subtitle = subtitle
+                tile.stateDescription = subtitle
+            }
+            Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q -> {
+                tile.subtitle = subtitle
+            }
+            // Subtitle not supported on older API levels
+        }
     }
 }

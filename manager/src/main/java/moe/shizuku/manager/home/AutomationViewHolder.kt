@@ -6,12 +6,12 @@ import android.view.View
 import android.view.ViewGroup
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
-import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.textfield.TextInputLayout
 import com.google.android.material.textfield.TextInputEditText
 import moe.shizuku.manager.BuildConfig
 import moe.shizuku.manager.R
 import moe.shizuku.manager.ShizukuSettings
+import moe.shizuku.manager.app.SnackbarHelper
 import moe.shizuku.manager.databinding.HomeAutomationBinding
 import moe.shizuku.manager.databinding.HomeAutomationBottomSheetBinding
 import moe.shizuku.manager.databinding.HomeItemContainerBinding
@@ -69,11 +69,11 @@ class AutomationViewHolder(
                             ClipboardUtils.put(context, input.text) &&
                             Build.VERSION.SDK_INT <= Build.VERSION_CODES.S_V2
                         ) {
-                            Snackbar.make(
+                            SnackbarHelper.show(
+                                context,
                                 v,
                                 context.getString(R.string.toast_copied_to_clipboard),
-                                Snackbar.LENGTH_SHORT,
-                            ).show()
+                            )
                         }
                     }
                 }

@@ -264,8 +264,8 @@
     <string name="diagnostic_shizuku_version_unknown">Shizuku version: not available</string>
     <string name="diagnostic_usb_debugging_on">USB debugging is enabled</string>
     <string name="diagnostic_usb_debugging_off">USB debugging is disabled</string>
-    <string name="diagnostic_wireless_debugging_on">Wireless debugging is supported (Android 11+)</string>
-    <string name="diagnostic_wireless_debugging_off">Wireless debugging requires Android 11+</string>
+    <string name="diagnostic_wireless_debugging_on">Wireless debugging is supported on this device</string>
+    <string name="diagnostic_wireless_debugging_off">Wireless debugging is not supported on this device</string>
     <string name="diagnostic_adb_tcp_active">ADB TCP port is active (port %d)</string>
     <string name="diagnostic_adb_tcp_inactive">ADB TCP port is not active</string>
     <string name="diagnostic_android_version">Android %1$s (API %2$d)</string>
