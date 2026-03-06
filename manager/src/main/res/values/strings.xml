@@ -248,8 +248,6 @@
 
     <!-- Accessibility -->
     <string name="accessibility_toggle_all_apps">Toggle authorization for all apps</string>
-    <string name="accessibility_app_icon">App icon for %s</string>
-    <string name="accessibility_authorization_switch">Authorization switch for %s</string>
 
     <!-- Misc -->
     <string name="dialog_cannot_open_browser_title">Can\'t start browser</string>

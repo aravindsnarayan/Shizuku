@@ -52,7 +52,8 @@ class ApplicationManagementActivity : AppBarActivity() {
                         msg = getString(R.string.app_management_load_error),
                         duration = Snackbar.LENGTH_INDEFINITE,
                         actionText = getString(android.R.string.ok),
-                        action = { finish() }
+                        action = { finish() },
+                        onDismiss = { finish() }
                     )
                 }
                 Status.LOADING -> {
