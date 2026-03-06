@@ -91,6 +91,10 @@
     <string name="home_automation_regenerate_token">Regenerate token?</string>
     <string name="home_automation_regenerate_token_message">You will need to reconfigure your intents with the new token.</string>
 
+    <!-- Home - Diagnostic -->
+    <string name="home_diagnostic_title">Diagnostic</string>
+    <string name="home_diagnostic_description">Check system prerequisites and troubleshoot issues</string>
+
     <!-- Home - Learn more -->
     <string name="home_learn_more_title">Developer guide</string>
     <string name="home_learn_more_description">Learn how to develop with Shizuku</string>
@@ -248,6 +252,33 @@
 
     <!-- Accessibility -->
     <string name="accessibility_toggle_all_apps">Toggle authorization for all apps</string>
+
+    <!-- Diagnostic -->
+    <string name="diagnostic_title">Diagnostic</string>
+    <string name="diagnostic_section_service">Shizuku Service</string>
+    <string name="diagnostic_section_adb">ADB &amp; Debugging</string>
+    <string name="diagnostic_section_system">System</string>
+    <string name="diagnostic_shizuku_running">Shizuku service is running</string>
+    <string name="diagnostic_shizuku_not_running">Shizuku service is not running</string>
+    <string name="diagnostic_shizuku_version">Shizuku version: %s</string>
+    <string name="diagnostic_shizuku_version_unknown">Shizuku version: not available</string>
+    <string name="diagnostic_usb_debugging_on">USB debugging is enabled</string>
+    <string name="diagnostic_usb_debugging_off">USB debugging is disabled</string>
+    <string name="diagnostic_wireless_debugging_on">Wireless debugging is supported (Android 11+)</string>
+    <string name="diagnostic_wireless_debugging_off">Wireless debugging requires Android 11+</string>
+    <string name="diagnostic_adb_tcp_active">ADB TCP port is active (port %d)</string>
+    <string name="diagnostic_adb_tcp_inactive">ADB TCP port is not active</string>
+    <string name="diagnostic_android_version">Android %1$s (API %2$d)</string>
+    <string name="diagnostic_root_available">Root access is available</string>
+    <string name="diagnostic_root_unavailable">Root access is not available</string>
+    <string name="diagnostic_battery_not_optimized">Battery optimization is disabled (recommended)</string>
+    <string name="diagnostic_battery_optimized">Battery optimization is enabled (may cause issues)</string>
+    <string name="diagnostic_developer_options_on">Developer options are enabled</string>
+    <string name="diagnostic_developer_options_off">Developer options may be disabled</string>
+
+    <!-- Quick Settings Tile -->
+    <string name="qs_tile_label">Shizuku</string>
+    <string name="qs_tile_start_unavailable">Cannot start Shizuku from Quick Settings. Open the app to start.</string>
 
     <!-- Misc -->
     <string name="dialog_cannot_open_browser_title">Can\'t start browser</string>
